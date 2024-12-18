@@ -2,11 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 from data import create_table, insert_data
 
-
 class LaptopScraper:
     def __init__(self, brand):
         self.brand = brand.strip().lower()
-        self.base_url = f'https://mudita.com.np/laptops-nepal/by-brand/{self.brand}-laptops-nepal.html'
+        if self.brand == 'mac book' or self.brand == 'macbook' or self.brand == 'apple':
+            self.base_url = 'https://mudita.com.np/laptops-nepal/by-brand/apple-macbook-nepal/macbook-air-nepal.html'
+        else:
+            self.base_url = f'https://mudita.com.np/laptops-nepal/by-brand/{self.brand}-laptops-nepal.html'
         self.headers = {
             'User-Agent': 'python-requests/2.32.3',
             'Accept-Encoding': 'gzip, deflate',
@@ -71,6 +73,7 @@ class LaptopScraper:
         for product in self.product_list:
             print(product)
             print('\n')
+
 
     def save_products_to_db(self):
         create_table()
