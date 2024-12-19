@@ -61,15 +61,14 @@ class LaptopScraper:
                 product_details = self.parse_product_details(product)
                 self.product_list.append(product_details)
 
-    def display_products(self):
-        if not self.product_list:
-            print(f'No products found for {self.brand} brand.')
-            return
-
-        print(f'{self.brand} brand products are:')
+    def display_products(self):       
         for product in self.product_list:
-            print(product)
-            print('\n')
+            print(f'Name: {product["name"]}')
+            print(f'Original Price: {product["original_price"]}')
+            print(f'Offer: {product["offer"]}')
+            print(f'New Price: {product["new_price"]}')
+            print(f'Details Link: {product["details_link"]}')
+            print('\n')           
 
 
     def save_products_to_db(self):
@@ -87,5 +86,5 @@ if __name__ == '__main__':
 
     scraper = LaptopScraper(search_term)
     scraper.fetch_products()
-    scraper.display_products()
     scraper.save_products_to_db()
+    scraper.display_products()
