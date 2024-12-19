@@ -4,11 +4,8 @@ from data import create_table, insert_data
 
 class LaptopScraper:
     def __init__(self, brand):
-        self.brand = brand.strip().lower()
-        if self.brand == 'mac book' or self.brand == 'macbook' or self.brand == 'apple':
-            self.base_url = 'https://mudita.com.np/laptops-nepal/by-brand/apple-macbook-nepal/macbook-air-nepal.html'
-        else:
-            self.base_url = f'https://mudita.com.np/laptops-nepal/by-brand/{self.brand}-laptops-nepal.html'
+        self.brand = brand.strip().lower()       
+        self.base_url = f'https://mudita.com.np/laptops-nepal/by-brand/{self.brand}-laptops-nepal.html'
         self.headers = {
             'User-Agent': 'python-requests/2.32.3',
             'Accept-Encoding': 'gzip, deflate',
